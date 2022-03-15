@@ -7,7 +7,7 @@ from typing import TextIO
 from tkinter import ttk
 from click import style
 
-from matplotlib.pyplot import text
+#from matplotlib.pyplot import text
 
 class interfazAreaTexto():
 
@@ -16,16 +16,17 @@ class interfazAreaTexto():
 
         ventana.geometry("800x600")
         ventana.config(bg="#00E7CE")
+        ventana.resizable(False,False)
 
-        b_volver = Button(ventana,text="volver")
+        #b_volver = Button(ventana,text="volver")
 
         b_analizar = Button(ventana,text="Analizar")
 
         b_reporte = Button(ventana,text="Generar Reportes")
-
+        b_Cargar = Button(ventana, text="Cargar Archivo lfp")
          
 
-        b_volver.place(x=30,y=15)
+        b_Cargar.place(x=30,y=15)
 
         b_analizar.place(x=50,y=540)
 
@@ -38,6 +39,7 @@ class interfazAreaTexto():
         t_editor.place(x=30,y=80)
         cajaCombo.place(x=630,y=45)
         cajaCombo.current(0)
+
         #ScrolVer.place(x=760,y=80)
         
 
