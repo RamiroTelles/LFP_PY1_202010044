@@ -8,7 +8,7 @@ from typing import TextIO
 from tkinter import ttk
 from click import style
 from analizador import analizador
-
+from os import startfile
 
 #from matplotlib.pyplot import text
 
@@ -17,7 +17,8 @@ class interfazAreaTexto():
     
     def __init__(self) -> None:
         self.funciones = analizador()
-
+      
+        
         def cargarArchivo():
             texto=self.funciones.cargarArchivo()
             t_editor.delete("1.0","end")
@@ -26,12 +27,34 @@ class interfazAreaTexto():
         
         def analizar():
             texto =t_editor.get("1.0","end")
-            print(texto)
+            #print(texto)
             result1= self.funciones.analizadorLexico(texto)
+          
+            
             result2 = self.funciones.analSintactico(result1[0])
 
+            result3 = self.funciones.analSemantico(result2[0],texto)
+     
+
+            self.funciones.reporteTokens(result1[0])
+            self.funciones.reporteErrores(result1[1],result2[1],result3[2])
+            startfile("dynamicForm.html")
             pass
 
+        def generarReporte():
+
+            opcion = cajaCombo.get()
+
+            
+            if opcion=="Generar Reporte Tokens":
+                startfile("ReporteTokens.html")
+            elif opcion== "Generar Reporte Errores":
+                startfile("ReporteErrores.html")
+            elif opcion=="Manual de Usuario":
+                print("iniciar el manual de usuario")
+            elif opcion=="Manual Técnico":
+                print("inicial el manual tecnico")
+            pass
         ventana = Tk()
 
         ventana.geometry("800x600")
@@ -42,7 +65,7 @@ class interfazAreaTexto():
 
         b_analizar = Button(ventana,text="Analizar", command=analizar)
 
-        b_reporte = Button(ventana,text="Generar Reportes")
+        b_reporte = Button(ventana,text="Generar Reportes", command=generarReporte)
         b_Cargar = Button(ventana, text="Cargar Archivo form", command=cargarArchivo)
          
 
