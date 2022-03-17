@@ -51,9 +51,9 @@ class interfazAreaTexto():
             elif opcion== "Generar Reporte Errores":
                 startfile("ReporteErrores.html")
             elif opcion=="Manual de Usuario":
-                print("iniciar el manual de usuario")
+                startfile("ManualDeUsuario.pdf")
             elif opcion=="Manual Técnico":
-                print("inicial el manual tecnico")
+                startfile("ManualTecnico.pdf")
             pass
         ventana = Tk()
 
